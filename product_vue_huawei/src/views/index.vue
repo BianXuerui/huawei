@@ -14,8 +14,8 @@
 </template>
 <script>
 import myHeader from '@/components/Header.vue'
-import myRotation from '@/views/Rotation.vue'
-import myRotation1 from '@/views/Rotation1.vue'
+import myRotation from '@/components/Rotation.vue'
+import myRotation1 from '@/components/Rotation1.vue'
 export default {
     components:{
         myHeader,
