@@ -499,7 +499,7 @@ export default {
  }
  /* 奇怪图形 */
   div.img img{
-    width: 100vw;
+    width: 98.9vw;
     margin:0 auto;
     position: absolute;
     top:615px;
@@ -509,12 +509,14 @@ export default {
     /* width: 1000px; */
     
   }
+
   .msg{
     width: 1205px;
     margin:0 auto;
     position: relative;
     z-index: 100;
   }
+
   .msg1{
     width: 1205px;
     height: 100px;
@@ -524,18 +526,22 @@ export default {
     position: absolute;
     top: -50px;
   }
+
   .msg1>ul>li:nth-child(2){
     margin-left:0px;
   }
+
   .msg img{
     width: 60px;
     margin-top: 10px;
   }
+
   .msg-right{
     width: 270px;
     height:70px;
     border-right:1px solid #EEEEEE;
   }
+
   .msg-img,.msg-msg,.msg-msg-msg div{
     float:left;
     font-size: 12px;
@@ -565,6 +571,7 @@ export default {
   .msg-msg-msg div:nth-child(2) a{
     color:#FDE4B3;
   }
+
   .img-img0 div{
     width: 45px;
     height:45px;
@@ -659,14 +666,19 @@ export default {
       .el-carousel__item,.el-carousel__mask{
         /* height:80% !important; */
       }
+  .el-carousel{                                     /*控制轮播图右边没有白框 下面没有滚动条*/
+    width: 98.9vw;
+  }
   .el-carousel__item{
-    width:100vw;
+    width: 100vw;
   }
   .el-carousel__item h3{
-    width:100vw;
+    /* width:100vw; */
+    width: 100vw;
   }
   .el-carousel__item h3 img{
     margin-left:-230px;
+    /* width: 100vw; */
   }
   
   .el-carousel__item:nth-child(2n) {
@@ -676,9 +688,10 @@ export default {
   .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
   }
+
   .hw-Rotation1>div:first-child{
-    width: 100vw;
-    margin:0 auto;
+    width: 98vw;
+    /* margin:0 auto; */
   }
   /* 轮播按钮 */
   .el-carousel__arrow{
@@ -718,6 +731,7 @@ export default {
     left:10.5rem;
     z-index: 100;
   }
+
   .message>ul>li{
     width: 200px;
     height: 73px;
@@ -807,12 +821,14 @@ export default {
     display:block;
   }
   
+
   .message>ul>li>div{
     width: 160px;
     height: 73px;
     border-bottom:1px solid #EEEEEE;
     margin:0 auto;
   }
+
   .message>ul>li>div>p{
     text-align: left;
     color:#848484;
