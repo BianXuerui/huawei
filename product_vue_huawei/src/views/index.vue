@@ -18,6 +18,9 @@
         <div class="thirdFloor">
             <my-thirdFloor></my-thirdFloor>
         </div>
+        <div class="fourthFloor">
+            <my-fourthFloor></my-fourthFloor>
+        </div>
     </div>
 </template>
 <script>
@@ -27,6 +30,7 @@ import myRotation1 from '@/components/header/Rotation1.vue'
 import myFirstFloor from '@/components/container/firstFloor.vue'
 import mySecondFloor from '@/components/container/secondFloor.vue'
 import myThirdFloor from '@/components/container/thirdFloor.vue'
+import myFourthFloor from '@/components/container/fourthFloor.vue'
 export default {
     components:{
         myHeader,
@@ -35,6 +39,7 @@ export default {
         myFirstFloor,
         mySecondFloor,
         myThirdFloor,
+        myFourthFloor,
     },
     data() {
         return {
