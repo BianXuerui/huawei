@@ -7,11 +7,13 @@ import Rotation1 from './components/header/Rotation1.vue'
 import firstFloor from './components/container/firstFloor.vue'
 import secondFloor from './components/container/secondFloor.vue'
 import thirdFloor from './components/container/thirdFloor.vue'
+import fourthFloor from './components/container/fourthFloor'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {path:'/fourthFloor',component:fourthFloor},
     {path:'/thirdFloor',component:thirdFloor},
     {path:'/secondFloor',component:secondFloor},
     {path:'/firstFloor',component:firstFloor},
