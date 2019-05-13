@@ -77,8 +77,28 @@
       </ul>
     </li>
     <li class="li-div">
+      <!-- 上一排：公告 -->
       <div>
-        <p>公告:************</p>
+          <span><a href="javascript:;">公告</a></span>
+          <span>
+              <!-- ul>li -->
+              <ul :class="{announce_go_top:is_announce_move}">
+                  <li v-for="(item,i) of small_announce_list">
+                      <a href="javascript:;">
+                          {{item.title}}
+                          <!-- {{small_announce_list[1].title}} -->
+                      </a>
+                  </li>
+                  <!-- <li v-for="(item,i) of small_announce_list" :key="i">
+                      <a href="javascript:;">{{item.title}}</a>
+                  </li> -->
+                  <!-- <li><a href="javascript:;">会员购机享多重优惠</a></li>
+                  <li><a href="javascript:;">华为51活动公告</a></li>
+                  <li><a href="javascript:;">5月购机抽奖公告</a></li>
+                  <li><a href="javascript:;">nova系列购机享福利</a></li>
+                  <li><a href="javascript:;">荣耀五一耀出游活动公告</a></li> -->
+              </ul>
+          </span>
       </div>
       <div>
         <ul>
@@ -486,12 +506,76 @@ export default {
             {src: require('../../../public/rotation/4.jpg')},
             {src: require('../../../public/rotation/5.jpg')},
         ],
-        height:'550px'
+        height:'550px',
+        small_announce_list:[ /* 公告栏小轮播 */
+                                {aid:0,title:"会员购机享多重优惠"},
+                                {aid:1,title:"华为51活动公告"},
+                                {aid:2,title:"5月购机抽奖公告"},
+                                {aid:3,title:"nova系列购机享福利"},
+                                {aid:4,title:"荣耀五一耀出游活动公告"}
+                            ],
+        // announce_id:0,
+        is_announce_move:false
         }
+    },
+    mounted(){
+            setInterval(this.announce_move,2000);//页面公告的显示
+        },
+    methods:{
+      announce_move(){
+                this.is_announce_move=true;
+                var timer=setTimeout(()=>{
+                    this.small_announce_list.push(this.small_announce_list[0]);//末尾追加
+                    this.small_announce_list.shift();//删除第一个
+                    this.is_announce_move=false;
+                },500)
+            }
     },
 }
 </script>
 <style>
+/* 公告轮播图 */
+.hw-Rotation1 .li-div>div:first-child{                                      /*公告框框*/
+  height:50px;
+  position: relative;
+  overflow: hidden;
+}
+.hw-Rotation1 .li-div>div:first-child>span:first-child{                     /*'公告'文字的位置*/
+  position: relative;
+  top: 13px;
+  left: -85px;
+}
+.hw-Rotation1 .li-div>div:first-child>span:first-child>a{                  /*'公告'文字样式*/ 
+  font-size: 14px;
+  font-weight: 700;
+  color:#777777;
+}
+.hw-Rotation1 .li-div>div:first-child>span:nth-child(2){                    /*'公告内容'框大小位置样式*/
+  display:block;
+  position:relative;
+  height: 45px;
+}
+.hw-Rotation1 .li-div>div:first-child>span:nth-child(2)>ul{                 /*'公告内容文字'位置*/
+  display: block;
+  position: absolute;
+  top: -23px;
+  left: 45px;
+}
+.hw-Rotation1 .li-div>div:first-child>span:nth-child(2)>ul.announce_go_top{
+  transition: all 0.5s ease-in;
+  margin-top: -30px;
+}
+.hw-Rotation1 .li-div>div:first-child>span:nth-child(2)>ul>li{
+  height:30px;
+  line-height:30px;
+}
+.hw-Rotation1 .li-div>div:first-child>span:nth-child(2)>ul>li>a{              /*公告内容文字的颜色*/
+  color: #6f6f6f;
+  font-size: 12px;
+}
+.hw-Rotation1 .li-div>div:first-child>span:nth-child(2)>ul>li>a:hover{        /*公告内容鼠标停留文字的颜色*/
+  color:#D3454B;  
+}
 /*白色小框*/
  .li-img p{
    font-size:8px;
@@ -644,7 +728,7 @@ export default {
     float:left;
   }
   .li-div li{
-    margin-left:3px;
+    margin-left:23px;
   }
   .li-div p{
     font-size: 3px;
@@ -663,29 +747,29 @@ export default {
   }
   /* 轮播图 */
       /* 灰色底框限制高 */
-      .el-carousel__item,.el-carousel__mask{
+      .hw-Rotation1 .el-carousel__item,.el-carousel__mask{
         /* height:80% !important; */
       }
-  .el-carousel{                                     /*控制轮播图右边没有白框 下面没有滚动条*/
+  .hw-Rotation1 .el-carousel{                                     /*控制轮播图右边没有白框 下面没有滚动条*/
     width: 98.9vw;
   }
-  .el-carousel__item{
+  .hw-Rotation1 .el-carousel__item{
     width: 100vw;
   }
-  .el-carousel__item h3{
+  .hw-Rotation1 .el-carousel__item h3{
     /* width:100vw; */
     width: 100vw;
   }
-  .el-carousel__item h3 img{
+  .hw-Rotation1 .el-carousel__item h3 img{
     margin-left:-230px;
     /* width: 100vw; */
   }
   
-  .el-carousel__item:nth-child(2n) {
+  .hw-Rotation1 .el-carousel__item:nth-child(2n) {
     background-color: #99a9bf;
   }
   
-  .el-carousel__item:nth-child(2n+1) {
+  .hw-Rotation1 .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
   }
 
@@ -694,26 +778,26 @@ export default {
     /* margin:0 auto; */
   }
   /* 轮播按钮 */
-  .el-carousel__arrow{
+  .hw-Rotation1 .el-carousel__arrow{
     width: 60px !important;
     height: 60px !important;
   }
-  .el-carousel__arrow--left{
+  .hw-Rotation1 .el-carousel__arrow--left{
     left:25rem !important;
   }
-  .el-carousel__arrow--right{
+  .hw-Rotation1 .el-carousel__arrow--right{
     right:10rem !important;
   }
   /* 轮播指示器 */
-  .el-carousel__indicators{
+  .hw-Rotation1 .el-carousel__indicators{
     left: 80rem !important;
     top: 28rem;
   }
-  .el-carousel__indicator{
+  .hw-Rotation1 .el-carousel__indicator{
     padding:12px 0 !important;
     margin-left:0.5rem !important;
   }
-  .el-carousel__button{
+  .hw-Rotation1 .el-carousel__button{
     width:15px !important;
     height:15px !important;
     border-radius:50%;
