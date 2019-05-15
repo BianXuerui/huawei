@@ -8,11 +8,13 @@ import firstFloor from './components/container/firstFloor.vue'
 import secondFloor from './components/container/secondFloor.vue'
 import thirdFloor from './components/container/thirdFloor.vue'
 import fourthFloor from './components/container/fourthFloor'
+import fifthFloor from './components/container/fifthFloor'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {path:'/fifthFloor',component:fifthFloor},
     {path:'/fourthFloor',component:fourthFloor},
     {path:'/thirdFloor',component:thirdFloor},
     {path:'/secondFloor',component:secondFloor},
