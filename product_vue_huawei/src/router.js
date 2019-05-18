@@ -10,6 +10,7 @@ import thirdFloor from './components/container/thirdFloor.vue'
 import fourthFloor from './components/container/fourthFloor'
 import fifthFloor from './components/container/fifthFloor'
 import sixthFloor from './components/container/sixthFloor'
+import sixth1Floor from './components/container/sixthFloor'
 import seventhFloor from './components/container/seventhFloor'
 import eighthFloor from './components/container/eighthFloor'
 import ninthFloor from './components/container/ninthFloor'
@@ -27,6 +28,7 @@ export default new Router({
     {path:'/ninthFloor',component:ninthFloor},
     {path:'/eighthFloor',component:eighthFloor},
     {path:'/seventhFloor',component:seventhFloor},
+    {path:'/sixth1Floor',component:sixth1Floor},
     {path:'/sixthFloor',component:sixthFloor},
     {path:'/fifthFloor',component:fifthFloor},
     {path:'/fourthFloor',component:fourthFloor},
