@@ -9,11 +9,25 @@ import secondFloor from './components/container/secondFloor.vue'
 import thirdFloor from './components/container/thirdFloor.vue'
 import fourthFloor from './components/container/fourthFloor'
 import fifthFloor from './components/container/fifthFloor'
+import sixthFloor from './components/container/sixthFloor'
+import seventhFloor from './components/container/seventhFloor'
+import eighthFloor from './components/container/eighthFloor'
+import ninthFloor from './components/container/ninthFloor'
+import tenthFloor from './components/container/tenthFloor'
+import eleventhFloor from './components/container/eleventhFloor'
+import footer from './components/container/footer'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {path:'/footer',component:footer},
+    {path:'/eleventhFloor',component:eleventhFloor},
+    {path:'/tenthFloor',component:tenthFloor},
+    {path:'/ninthFloor',component:ninthFloor},
+    {path:'/eighthFloor',component:eighthFloor},
+    {path:'/seventhFloor',component:seventhFloor},
+    {path:'/sixthFloor',component:sixthFloor},
     {path:'/fifthFloor',component:fifthFloor},
     {path:'/fourthFloor',component:fourthFloor},
     {path:'/thirdFloor',component:thirdFloor},
