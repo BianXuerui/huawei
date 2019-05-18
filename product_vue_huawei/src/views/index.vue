@@ -21,6 +21,30 @@
         <div class="fourthFloor">
             <my-fourthFloor></my-fourthFloor>
         </div>
+        <div class="fifthFloor">
+            <my-fifthFloor></my-fifthFloor>
+        </div>
+        <div class="sixthFloor">
+            <my-sixthFloor></my-sixthFloor>
+        </div>
+        <div class="seventhFloor">
+            <my-seventhFloor></my-seventhFloor>
+        </div>
+        <div class="eighthFloor">
+            <my-eighthFloor></my-eighthFloor>
+        </div>
+        <div class="ninthFloor">
+            <my-ninthFloor></my-ninthFloor>
+        </div>
+        <div class="tenthFloor">
+            <my-tenthFloor></my-tenthFloor>
+        </div>
+        <div class="eleventhFloor">
+            <my-eleventhFloor></my-eleventhFloor>
+        </div>
+        <div class="footer">
+            <my-footer></my-footer>
+        </div>
     </div>
 </template>
 <script>
@@ -31,6 +55,15 @@ import myFirstFloor from '@/components/container/firstFloor.vue'
 import mySecondFloor from '@/components/container/secondFloor.vue'
 import myThirdFloor from '@/components/container/thirdFloor.vue'
 import myFourthFloor from '@/components/container/fourthFloor.vue'
+import myFifthFloor from '@/components/container/fifthFloor.vue'
+import mySixthFloor from '@/components/container/sixthFloor.vue'
+import mySeventhFloor from '@/components/container/seventhFloor.vue'
+import myEighthFloor from '@/components/container/eighthFloor.vue'
+import myNinthFloor from '@/components/container/ninthFloor.vue'
+import myTenthFloor from '@/components/container/tenthFloor.vue'
+import myEleventhFloor from '@/components/container/eleventhFloor.vue'
+import myFooter from '@/components/container/footer.vue'
+
 export default {
     components:{
         myHeader,
@@ -40,6 +73,14 @@ export default {
         mySecondFloor,
         myThirdFloor,
         myFourthFloor,
+        myFifthFloor,
+        mySixthFloor,
+        mySeventhFloor,
+        myEighthFloor,
+        myNinthFloor,
+        myTenthFloor,
+        myEleventhFloor,
+        myFooter,
     },
     data() {
         return {
@@ -49,5 +90,9 @@ export default {
 }
 </script>
 <style scope>
-
+ul::after{
+    content: "";
+    display: block;
+    clear: both;
+}
 </style>
