@@ -27,6 +27,9 @@
         <div class="sixthFloor">
             <my-sixthFloor></my-sixthFloor>
         </div>
+        <div class="sixth1Floor">
+            <my-sixth1Floor></my-sixth1Floor>
+        </div>
         <div class="seventhFloor">
             <my-seventhFloor></my-seventhFloor>
         </div>
@@ -57,6 +60,7 @@ import myThirdFloor from '@/components/container/thirdFloor.vue'
 import myFourthFloor from '@/components/container/fourthFloor.vue'
 import myFifthFloor from '@/components/container/fifthFloor.vue'
 import mySixthFloor from '@/components/container/sixthFloor.vue'
+import mySixth1Floor from '@/components/container/sixth1Floor.vue'
 import mySeventhFloor from '@/components/container/seventhFloor.vue'
 import myEighthFloor from '@/components/container/eighthFloor.vue'
 import myNinthFloor from '@/components/container/ninthFloor.vue'
@@ -75,6 +79,7 @@ export default {
         myFourthFloor,
         myFifthFloor,
         mySixthFloor,
+        mySixth1Floor,
         mySeventhFloor,
         myEighthFloor,
         myNinthFloor,
