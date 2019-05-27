@@ -4,134 +4,94 @@
             精品推荐
         </h2>
         <div class="thirdAll">
-            <ul>
-                <li>
-                    <a href="">
+            <ul :style="ulImgStyle">
+                <li v-for="item in myList" :key="item.id">
+                    <a href="javascript:;">
                         <div class="thirdImg">
                             <p class="thirdImgP">
-                            <img src="../../../public/container/thirdFloor/1.png">
+                            <img :src="'http://127.0.0.1:3000/'+item.pimg">
                             </p>
                             <p class="gridDescribe">
-                                樱粉金上市 定金100抵300
+                                {{item.pdesc}}
                             </p>
                         </div>
                         <div class="gridTitle">
-                            HUAWEI MateBook X Pro 2019款
+                            {{item.ptitle}}
                         </div>
                         <p class="gridPrice">
-                            ￥8999
+                            ￥{{item.pprice}}
                         </p>
-                        <p class="gridTips">
+                        <p class="gridTips" v-if="item.ptips.length>0">
                             <em>
-                                <span>新品上市</span>
-                            </em>
-                        </p>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <div class="thirdImg">
-                            <p class="thirdImgP">
-                            <img src="../../../public/container/thirdFloor/1.png">
-                            </p>
-                            <p class="gridDescribe">
-                                樱粉金上市 定金100抵300
-                            </p>
-                        </div>
-                        <div class="gridTitle">
-                            HUAWEI MateBook X Pro 2019款
-                        </div>
-                        <p class="gridPrice">
-                            ￥8999
-                        </p>
-                        <p class="gridTips">
-                            <em>
-                                <span>新品上市</span>
-                            </em>
-                        </p>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <div class="thirdImg">
-                            <p class="thirdImgP">
-                            <img src="../../../public/container/thirdFloor/1.png">
-                            </p>
-                            <p class="gridDescribe">
-                                樱粉金上市 定金100抵300
-                            </p>
-                        </div>
-                        <div class="gridTitle">
-                            HUAWEI MateBook X Pro 2019款
-                        </div>
-                        <p class="gridPrice">
-                            ￥8999
-                        </p>
-                        <p class="gridTips">
-                            <em>
-                                <span>新品上市</span>
-                            </em>
-                        </p>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <div class="thirdImg">
-                            <p class="thirdImgP">
-                            <img src="../../../public/container/thirdFloor/1.png">
-                            </p>
-                            <p class="gridDescribe">
-                                樱粉金上市 定金100抵300
-                            </p>
-                        </div>
-                        <div class="gridTitle">
-                            HUAWEI MateBook X Pro 2019款
-                        </div>
-                        <p class="gridPrice">
-                            ￥8999
-                        </p>
-                        <p class="gridTips">
-                            <em>
-                                <span>新品上市</span>
-                            </em>
-                        </p>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <div class="thirdImg">
-                            <p class="thirdImgP">
-                            <img src="../../../public/container/thirdFloor/1.png">
-                            </p>
-                            <p class="gridDescribe">
-                                樱粉金上市 定金100抵300
-                            </p>
-                        </div>
-                        <div class="gridTitle">
-                            HUAWEI MateBook X Pro 2019款
-                        </div>
-                        <p class="gridPrice">
-                            ￥8999
-                        </p>
-                        <p class="gridTips">
-                            <em>
-                                <span>新品上市</span>
+                                <span>{{item.ptips}}</span>
                             </em>
                         </p>
                     </a>
                 </li>
             </ul>
+            <div class="btnLeft" :class="btnLeftDisabled==true?'hidden':''" @click="movedRight">左</div>
+            <div class="btnRight" :class="btnRightDisabled==true?'hidden':''" @click="movedLeft">右</div>
         </div>
     </div>
 </template>
 <script>
 export default {
-    
+    data(){
+        return {
+            ulImgStyle:{//专门控制ulImgs的样式
+            //因为ulImgs在整个效果中会有两个样式发生变化,所有必须有两个属性来支持变化
+            width:0,
+            'margin-left':0,//记录ul已经左移的li的次数
+            },
+            
+            moved:0,
+            myList:{}
+        }
+    },
+    computed:{
+        btnLeftDisabled(){
+            return this.moved==0;
+        },
+        btnRightDisabled(){
+            return this.moved>=this.myList.length-5
+        }
+    },
+    methods:{
+        movedLeft(){
+            if(this.btnRightDisabled==false){
+                this.moved++;
+                this.ulImgStyle['margin-left']=this.moved*-240+"px";
+               console.log(this.moved);
+            }
+        },
+        movedRight(){
+            if(this.btnLeftDisabled==false){
+                
+                this.moved--;
+                this.ulImgStyle['margin-left']=this.moved*-240+"px";
+                console.log(this.moved);
+            }
+        },
+        LoadList(){
+            var url = "http://127.0.0.1:3000/listOne";
+            this.axios.get(url).then((result)=>{
+                console.log(result.data.result);
+                this.myList = result.data.result;
+                this.ulImgStyle.width = this.myList.length*240+"px";
+            })
+        }
+    },
+    created(){
+        this.LoadList();
+    }
 }
 </script>
 <style>
 *{margin:0;padding: 0;}
 em{font-style: normal;font-weight: 400;width: 100%;height: 100%;}
+#thirdFloor{
+    position: relative;
+}
 #thirdFloor ul::after{                     /*清除ul的浮动*/
     content: "";
     clear: both;
@@ -139,6 +99,10 @@ em{font-style: normal;font-weight: 400;width: 100%;height: 100%;}
 }
 #thirdFloor>.thirdAll>ul>li{                      /*清除以前li的行高,让'爆款'上面没有距离*/
     line-height: 0px;
+}
+#thirdFloor>.thirdAll{
+    overflow: hidden;
+    height: 305px;
 }
 #thirdFloor>.thirdAll>ul{                          /*ul容器距离上面title标题的距离*/
     margin-top: 1rem;
@@ -148,6 +112,10 @@ em{font-style: normal;font-weight: 400;width: 100%;height: 100%;}
 }
 #thirdFloor>.thirdAll>ul>li{
     margin-left: 0.8rem;
+}   
+#thirdFloor>.thirdAll>ul>li:nth-child(6),           /*第6个和11个limargin-left:0px*/
+#thirdFloor>.thirdAll>ul>li:nth-child(11){
+    /* margin-left: 0px; */
 }
 
 #thirdFloor{
@@ -210,7 +178,7 @@ em{font-style: normal;font-weight: 400;width: 100%;height: 100%;}
     display: block;
 } 
 #thirdFloor .gridTips span{   
-    display: inline-block;                                 /*爆款框*/
+    display: inline-block;                                                         /*爆款框*/
     padding: 0 9px;
     margin: 0 auto;
     height: 22px;
@@ -218,6 +186,26 @@ em{font-style: normal;font-weight: 400;width: 100%;height: 100%;}
     color: #fff;
     border-radius: 0 0 6px 6px;
     background-color: #ff8486;
+}
+
+#thirdFloor .btnLeft,#thirdFloor .btnRight{                                       /*左右按钮的样式*/
+    width: 36px;height: 73px;
+    background-color: #F0F0F0;  
+}
+#thirdFloor .btnLeft{                                                             /*左边按钮*/
+    position: absolute;
+    top: 127px;
+    left: 0;
+    border-radius: 0 10px 10px 0; 
+}
+#thirdFloor .btnRight{                                                            /*右边按钮*/
+    position: absolute;
+    top: 127px;
+    left: 1156px;
+    border-radius: 10px 0 0 10px;
+}
+#thirdFloor .hidden{
+    display: none;
 }
 </style>
 
