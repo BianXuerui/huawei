@@ -29,8 +29,12 @@
                     </a>
                 </li>
             </ul>
-            <div class="btnLeft" :class="btnLeftDisabled==true?'hidden':''" @click="movedRight">左</div>
-            <div class="btnRight" :class="btnRightDisabled==true?'hidden':''" @click="movedLeft">右</div>
+            <div class="btnLeft" :class="btnLeftDisabled==true?'hidden':''" @click="movedRight">
+                <img src="../../../public/container/thirdFloor/left.png">
+            </div>
+            <div class="btnRight" :class="btnRightDisabled==true?'hidden':''" @click="movedLeft">
+                <img src="../../../public/container/thirdFloor/right.png">
+            </div>
         </div>
     </div>
 </template>
@@ -60,7 +64,7 @@ export default {
         movedLeft(){
             if(this.btnRightDisabled==false){
                 this.moved++;
-                this.ulImgStyle['margin-left']=this.moved*-240+"px";
+                this.ulImgStyle['margin-left']=this.moved*-240.8+"px";
                console.log(this.moved);
             }
         },
@@ -68,7 +72,7 @@ export default {
             if(this.btnLeftDisabled==false){
                 
                 this.moved--;
-                this.ulImgStyle['margin-left']=this.moved*-240+"px";
+                this.ulImgStyle['margin-left']=this.moved*-240.8+"px";
                 console.log(this.moved);
             }
         },
@@ -77,7 +81,7 @@ export default {
             this.axios.get(url).then((result)=>{
                 console.log(result.data.result);
                 this.myList = result.data.result;
-                this.ulImgStyle.width = this.myList.length*240+"px";
+                this.ulImgStyle.width = this.myList.length*240.8+"px";
             })
         }
     },
@@ -204,8 +208,20 @@ em{font-style: normal;font-weight: 400;width: 100%;height: 100%;}
     left: 1156px;
     border-radius: 10px 0 0 10px;
 }
-#thirdFloor .hidden{
+#thirdFloor .hidden{                                                              /*当按钮的某个条件为true是应用此样式*/
     display: none;
+}
+#thirdFloor .btnLeft img{                                                         /*向左按钮图片的位置大小*/
+    width: 35px;height: 35px;
+    position: absolute;
+    top: 17px;
+    left: -3px;
+}
+#thirdFloor .btnRight img{                                                         /*向右按钮图片的位置大小*/
+    width: 35px;height: 35px;
+    position: absolute;
+    top: 17px;
+    left: 0px;
 }
 </style>
 
