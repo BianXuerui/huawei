@@ -17,11 +17,22 @@ import ninthFloor from './components/container/ninthFloor'
 import tenthFloor from './components/container/tenthFloor'
 import eleventhFloor from './components/container/eleventhFloor'
 import footer from './components/container/footer'
+// 用户登录页面
+import user from './views/User'
+import userHeader from './components/user/userHeader'
+import userContainer from './components/user/container'
+import userFooter from './components/user/userFooter'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    // 用户页
+    {path:'/userFooter',component:userFooter},
+    {path:'/userContainer',component:userContainer},
+    {path:'/userHeader',component:userHeader},
+    {path:'/user',component:user},
+    // index页
     {path:'/footer',component:footer},
     {path:'/eleventhFloor',component:eleventhFloor},
     {path:'/tenthFloor',component:tenthFloor},
