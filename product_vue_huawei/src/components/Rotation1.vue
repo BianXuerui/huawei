@@ -182,7 +182,14 @@
           </li>
         </ul>
         <ul>
-          <a href="">查看全部</a>
+          <div class="seeAll">
+            <div>
+              <div>
+                <img src="../../../public/rotation/right.png">
+              </div>
+              <span>查看全部</span>
+            </div>
+          </div>
         </ul>
       </div>
     </li>
@@ -212,7 +219,14 @@
             </a>
           </li>
           <li>
-            <a href="">查看全部</a>
+            <div class="seeAll">
+            <div>
+              <div>
+                <img src="../../../public/rotation/right.png">
+              </div>
+              <span>查看全部</span>
+            </div>
+          </div>
           </li>
         </ul>
       </div>
@@ -243,7 +257,14 @@
             </a>
           </li>
           <li>
-            <a href="">查看全部</a>
+            <div class="seeAll">
+            <div>
+              <div>
+                <img src="../../../public/rotation/right.png">
+              </div>
+              <span>查看全部</span>
+            </div>
+          </div>
           </li>
         </ul>
       </div>
@@ -352,7 +373,14 @@
             </a>
           </li>
           <li>
-            <a href="">查看全部</a>
+            <div class="seeAll">
+            <div>
+              <div>
+                <img src="../../../public/rotation/right.png">
+              </div>
+              <span>查看全部</span>
+            </div>
+          </div>
           </li>
         </ul>
       </div>
@@ -461,7 +489,14 @@
             </a>
           </li>
           <li>
-            <a href="">查看全部</a>
+            <div class="seeAll">
+            <div>
+              <div>
+                <img src="../../../public/rotation/right.png">
+              </div>
+              <span>查看全部</span>
+            </div>
+          </div>
           </li>
         </ul>
       </div>
@@ -486,7 +521,14 @@
             </a>
           </li>
           <li>
-            <a href="">查看全部</a>
+            <div class="seeAll">
+            <div>
+              <div>
+                <img src="../../../public/rotation/right.png">
+              </div>
+              <span>查看全部</span>
+            </div>
+          </div>
           </li>
         </ul>
       </div>
@@ -500,6 +542,7 @@ export default {
     data() {
         return {
             list:[
+            {src: require('../../../public/rotation/6.jpg')},
             {src: require('../../../public/rotation/1.jpg')},
             {src: require('../../../public/rotation/2.jpg')},
             {src: require('../../../public/rotation/3.jpg')},
@@ -845,7 +888,10 @@ export default {
    height:5rem;
    margin-top:1rem;
    border-radius:10px;
-   background:#F6F6F6;
+  }
+  .message1 a:hover,.message2 a:hover,.message3 a:hover,
+  .message4 a:hover,.message5 a:hover,.message6 a:hover{                            /*轮播图容器里面白色框里面小框的hover背景颜色*/
+    background:#F6F6F6;
   }
   .message img{
     width:56px;
@@ -938,5 +984,36 @@ export default {
   }
   .message>ul>li:last-child>div{
     border-bottom:0px;
+  }
+
+  .hw-Rotation1 .seeAll{                                      /*查看全部最外层容器的样式*/
+    width: 190px;height: 80px;
+    /* border: 1px solid; */
+    margin-top: 22px;
+    border-radius: 10px;
+  }
+  .hw-Rotation1 .seeAll::before{
+    content: "";
+    display: table;
+  }
+  .hw-Rotation1 .seeAll>div{
+    width: 120px;height: 40px;
+    border: 1px solid #F2F2F2;
+    margin: 18px 0 0 10px;
+    border-radius: 70px;
+    display: flex;
+  }
+  .hw-Rotation1 .seeAll>div>span{
+    margin: 5px 0 0 5px;
+  }
+  .hw-Rotation1 .seeAll>div>div{
+    width: 40px;height: 40px;
+    border: 1px solid #F2F2F2;
+    border-radius: 20px;
+    margin: 0 0 0 0;
+  }
+  .hw-Rotation1 .seeAll img{
+    width: 15px;height: 15px;
+    margin: 12px 0 0 0;
   }
 </style>
