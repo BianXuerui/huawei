@@ -96,15 +96,18 @@ em{font-style: normal;font-weight: 400;width: 100%;height: 100%;}
 #thirdFloor{
     position: relative;
 }
-#thirdFloor ul::after{                     /*清除ul的浮动*/
+#thirdFloor ul::after{                            /*清除ul的浮动*/
     content: "";
     clear: both;
     display: block;
 }
+#thirdFloor>.thirdAll>ul{                         /*ul移动的时候加一个动画效果*/
+    transition: margin-left .5s linear;
+}
 #thirdFloor>.thirdAll>ul>li{                      /*清除以前li的行高,让'爆款'上面没有距离*/
     line-height: 0px;
 }
-#thirdFloor>.thirdAll{
+#thirdFloor>.thirdAll{                              /*让列表里面多余的商品隐藏*/
     overflow: hidden;
     height: 305px;
 }
