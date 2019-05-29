@@ -1,0 +1,58 @@
+<template>
+    <div id="userFooter">
+        <div>
+            <ul>
+                <li>
+                    <a href="javascript:;">华为账号用户协议</a>
+                    <span>|</span>
+                </li>
+                <li>
+                    <a href="javascript:;">关于华为账号与隐私的声明</a>
+                    <span>|</span>
+                </li>
+                <li><a href="javascript:;">常见问题</a></li>
+            </ul>
+        </div>
+        <p>Copyright © 2011-2019  华为软件技术有限公司  版权所有  保留一切权利  苏B2-20070200号 | 苏ICP备09062682号-9</p>
+    </div>
+</template>
+<script>
+export default {
+    data(){
+        return {}
+    }
+}
+</script>
+<style>
+*{margin: 0;padding: 0;}
+#userFooter{                                                            /*底部容器的颜色大小*/
+    width: 100vw;
+    height: 80px;
+    background-color: #EBEBEB;
+}
+#userFooter>div::before{                    
+    content: "";
+    display: table;
+}
+#userFooter>div>ul{                                                     /*底部里面第一个ul容器的位置*/
+    margin: 0.5rem 0 0 32rem;
+}
+#userFooter>div>ul>li{                                                  /*改变ul里面每个li的默认margin*/
+    margin-left: 1rem;
+}
+#userFooter>div>ul>li>a{                                                /*第一个ul里li里a的字体大小颜色*/
+    font-size:13px;
+    color: #999999; 
+}
+#userFooter>div>ul>li>span{                                             /*第一个ul里li里span的位置颜色*/
+    margin-left: 1rem;
+    color: #000;
+}
+
+#userFooter>p{
+    font-size: 13px;
+    color: #999999;
+    margin-left: 23rem;
+}
+</style>
+
