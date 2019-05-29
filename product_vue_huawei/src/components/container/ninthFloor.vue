@@ -1,4 +1,137 @@
+<template>
+    <div id="ninthFloor">
+        <img src="../../../public/container/ninthFloor/0.jpg">
+         <!-- 一楼 -->
+        <div class="first">
+            <h2>热销配件</h2>
+            <ul>
+                <li><a href="">保护壳</a></li>
+                <li><a href="">保护套</a></li>
+                <li><a href="">贴膜</a></li>
+                <li><a href="">移动电源</a></li>
+                <li><a href="">耳机</a></li>
+                <li><a href="">充电器/线材</a></li>
+                <li><a href="">自拍杆/支架</a></li>
+                <li><a href="">音响</a></li>
+                <li><a href="">U盘/存储卡</a></li>
+                <li><a href="">摄像机/镜头</a></li>
+                <li><a href="">智能硬件</a></li>
+                <li><a href="">表带</a></li>
+            </ul>
+            <div>查看更多></div>
+        </div>
+        <!-- 二楼 -->
+        <div class="second">
+            <ul>
+                <li><a href=""><img src="../../../public/container/ninthFloor/11.jpg"></a></li>
+                <li v-for="item in partsList" :key="item.id">
+                    <a href="">
+                        <div class="gridImg"><img :src="'http://127.0.0.1:3000/'+item.pimg"></div>
+                    </a>
+                    <div class="gridInfo">{{item.ptitle}}</div>
+                    <p class="gridDescribe">{{item.pdesc}}</p>
+                    <p class="gridPrice">￥{{item.pprice}}</p>
+                    <p class="gridTips" v-if="item.ptips.length>0">
+                            <em>
+                                <span>{{item.ptips}}</span>
+                            </em>
+                        </p>
+                </li>
+                <!-- <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li> -->
+            </ul>
+        </div>
+        <!-- 三楼 -->
+        <div class="third">
+            <ul :style="ulImgStyle">
+                <li v-for="item in myList" :key="item.id">
+                    <a href="">
+                        <div class="thirdImg">
+                            <p class="thirdImgP">
+                            <img :src="'http://127.0.0.1:3000/'+item.pimg">
+                            </p>
+                            <p class="gridDescribe">
+                                {{item.pdesc}} 
+                            </p>
+                        </div>
+                        <div class="gridTitle">
+                            {{item.ptitle}}
+                        </div>
+                        <p class="gridPrice">
+                            ￥{{item.pprice}}
+                        </p>
+                    </a>
+                </li>
+                <!-- <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li> -->
+            </ul>
+            <div class="btnLeft" :class="btnLeftDisabled==true?'hidden':''" @click="movedRight">
+                <img src="../../../public/container/thirdFloor/left.png">
+            </div>
+            <div class="btnRight" :class="btnRightDisabled==true?'hidden':''" @click="movedLeft">
+                <img src="../../../public/container/thirdFloor/right.png">
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    props:['partsList'],
+    data(){
+        return {
+            ulImgStyle:{
+                width:0,
+                'margin-left':0
+            },
+            myList:{},
+            moved:0
+        }
+    },
+    computed:{
+        btnLeftDisabled(){
+            return this.moved == 0;
+        },
+        btnRightDisabled(){
+            return this.moved>=this.myList.length-6
+        }
+    },
+    methods:{
+        movedLeft(){
+            if(this.btnRightDisabled == false){
+                this.moved++;
+                this.ulImgStyle['margin-left']=this.moved*-200+"px";
+            }
+        },
+        movedRight(){
+            if(this.btnLeftDisabled == false){
+                this.moved--;
+                this.ulImgStyle['margin-left']=this.moved*-200+"px";
+            }
+        },
+        LoadList(){
+            var url = "http://127.0.0.1:3000/listFour";
+            this.axios.get(url).then((result)=>{
+            this.myList = result.data.result;
+            this.ulImgStyle.width = this.myList.length*200+"px";
+            })
+        }    
+    },
+    created(){
+        this.LoadList();
+    }
+}
+</script>
+<style>
 *{margin: 0;padding: 0;}
+em{font-style: normal;font-weight: 400;width: 100%;height: 100%;}
 #ninthFloor{                                                               /*整个九楼的样式*/
     width: 1200px;
     margin: 5rem auto 0;
@@ -53,6 +186,7 @@
     background-color: #F9F9F9;
     margin-left: 10px;
     border-radius: 10px;
+    position: relative;
 }
 #ninthFloor>.second>ul>li:nth-child(5),                                   /*第二个容器第二排li距离上面和下面的距离*/
 #ninthFloor>.second>ul>li:nth-child(6),
@@ -95,6 +229,14 @@
     line-height: 50px;
 }
 
+#ninthFloor>.third .hidden{                                               /*当某个条件为true时,左/右按钮不显示*/
+    display: none;
+}
+#ninthFloor>.third{
+    overflow: hidden;
+    height: 15rem;
+    position: relative;
+}
 #ninthFloor>.third>ul>li:first-child{                                     /*第三个容器里面,第一个li左边外边距为0*/
     margin-left: 0px;
 }
@@ -126,3 +268,56 @@
     line-height: 10px;
     color: #D00230;
 }
+
+#ninthFloor .gridTips{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    /* border: 1px solid; */
+    height: 48px;
+    display: block;
+}  
+#ninthFloor .gridTips span{   
+    display: inline-block;                                      /*爆款框*/
+    padding: 0 9px;
+    margin: 0 auto;
+    height: 22px;
+    /* line-height: 22px; */
+    color: #fff;
+    border-radius: 0 0 6px 6px;
+    background-color: #ff8486;
+}
+
+#ninthFloor .third .btnLeft,
+#ninthFloor .third .btnRight{
+    width: 36px;height: 73px;
+    background-color: #F0F0F0;
+}
+#ninthFloor .third .btnLeft{
+    position: absolute;
+    top: 60px;
+    left: 0;
+    border-radius: 0 10px 10px 0;
+}
+#ninthFloor .third .btnRight{
+    position: absolute;
+    top: 60px;
+    left: 1154px;
+    border-radius: 10px 0 0 10px;
+}
+#ninthFloor .btnLeft img{
+    width: 35px;height: 35px;
+    position: absolute;
+    top: 17px;
+    left: 0px;
+}
+#ninthFloor .btnRight img{
+    width: 35px;height: 35px;
+    position: absolute;
+    top: 17px;
+    left: 0px;
+}
+</style>
+
+
