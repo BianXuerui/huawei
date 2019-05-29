@@ -3,24 +3,32 @@
     <div class="layout">
     <div class="s-sub">
       <ul>
-        <li><a href="">首页</a></li>
-        <li><a href="">华为官网</a></li>
-        <li><a href="">荣耀俱乐部</a></li>
-        <li><a href="">花粉俱乐部</a></li>
-        <li><a href="">V码(优购码)</a></li>
-        <li><a href="">企业购</a></li>
-        <li><a href="">Select Regin</a></li>
-        <li><a href="">更多精彩</a></li>
+        <li><a href="javascript:;">首页</a></li>
+        <li><a href="javascript:;">华为官网</a></li>
+        <li><a href="javascript:;">荣耀俱乐部</a></li>
+        <li><a href="javascript:;">花粉俱乐部</a></li>
+        <li><a href="javascript:;">V码(优购码)</a></li>
+        <li><a href="javascript:;">企业购</a></li>
+        <li><a href="javascript:;">Select Regin</a></li>
+        <li class="nav_down_outer_li" @mouseenter="my_arrow_func_enter(0)" @mouseleave="my_arrow_func_leave(0)">
+          <a href="javascript:;">更多精彩</a>
+          <ul class="nav_down_ul nav_down_ul0">
+              <li><a href="javascript:;">EMUI</a></li>
+              <li><a href="javascript:;">应用市场</a></li>
+              <li><a href="javascript:;">华为终端云空间</a></li>
+              <li><a href="javascript:;">开发者联盟</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
     <div class="s-main">
         <ul>
-        <li><a href="">请登录</a></li>
-        <li><a href="">注册</a></li>
-        <li><a href="">我的订单</a></li>
-        <li><a href="">客户服务</a></li>
-        <li><a href="">网站导航</a></li>
-        <li><a href="">手机版</a></li>
+        <li><a href="javascript:;">请登录</a></li>
+        <li><a href="javascript:;">注册</a></li>
+        <li><a href="javascript:;">我的订单</a></li>
+        <li><a href="javascript:;">客户服务</a></li>
+        <li><a href="javascript:;">网站导航</a></li>
+        <li><a href="javascript:;">手机版</a></li>
         <li>
           <table></table>
           <a href="">
@@ -56,6 +64,40 @@ ul li{ float:left}
   height: 1.8rem;
 }
 
+.hw-header>.layout>.s-sub>ul>li a:hover,                             /*导航栏所有a的hover样式*/
+.hw-header>.layout>.s-main>ul>li a:hover{
+  color:#CF0A2C;
+}
+
+.hw-header>.layout>.s-sub>ul>.nav_down_outer_li:hover>a,            /*鼠标停留li容器和ul列表背景颜色变为白色*/
+.hw-header>.layout>.s-sub>ul>.nav_down_outer_li:hover>ul{
+  background-color: #fff;
+}
+.hw-header>.layout>.s-sub>ul>.nav_down_outer_li{                    /*指明灯*/
+  position: relative;
+  z-index: 20;
+}
+.hw-header>.layout>.s-sub>ul>.nav_down_outer_li>ul{                 /*鼠标停留显示ul列表的样式*/
+  display: none;
+  position: absolute;
+  top: 22px;
+  left: -55px;
+  z-index: 20;
+  width: 120px;
+  border-radius: 0 0 10px 10px;
+}
+.hw-header>.layout>.s-sub>ul>.nav_down_outer_li>ul>li{              /*停留显示ul列表里面li的样式*/
+  width: 7rem;         
+  text-align: center;
+  margin-top: 10px;
+}
+.hw-header>.layout>.s-sub>ul>.nav_down_outer_li>ul>li>a:hover{      /*停留显示ul列表里面hover a的字体的颜色*/
+  color:#CF0A2C;
+}
+.hw-header>.layout>.s-sub>ul>.nav_down_outer_li:hover>ul{           /*hover让ul列表显示*/
+  display: block;
+}
+
 .hw-header>.layout>.s-sub::after{                      /*清除li的浮动*/
   clear:both;
   display: block;
@@ -84,7 +126,7 @@ ul li{ float:left}
 .hw-header>.layout>.s-sub>ul>li:last-child::after{        /*左边列表 最后一个li的content内容清空*/
   content: "";
 }
-.hw-header>.layout>.s-sub>ul>li:last-child a::after{      /*左边列表 最后一个li的content加上∨*/
+.hw-header>.layout>.s-sub>ul>li:last-child>a::after{      /*左边列表 最后一个li的content加上∨*/
   content: "∨";
 }
 .hw-header>.layout>.s-main>ul>li:nth-child(1)::after,
