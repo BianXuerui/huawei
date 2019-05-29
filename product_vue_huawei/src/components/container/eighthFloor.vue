@@ -4,20 +4,20 @@
         <div class="first">
             <h2>智能家具</h2>
             <ul>
-                <li><a href="">路由器</a></li>
-                <li><a href="">子母/分布式路由</a></li>
-                <li><a href="">电力猫/wifi放大器</a></li>
-                <li><a href="">随性wifi</a></li>
-                <li><a href="">电视盒子</a></li>
-                <li><a href="">照明</a></li>
-                <li><a href="">清洁</a></li>
-                <li><a href="">节能</a></li>
-                <li><a href="">环境</a></li>
-                <li><a href="">安防</a></li>
-                <li><a href="">健康</a></li>
-                <li><a href="">厨电</a></li>
-                <li><a href="">影音</a></li>
-                <li><a href="">卫浴</a></li>
+                <li><a href="javascript:;">路由器</a></li>
+                <li><a href="javascript:;">子母/分布式路由</a></li>
+                <li><a href="javascript:;">电力猫/wifi放大器</a></li>
+                <li><a href="javascript:;">随性wifi</a></li>
+                <li><a href="javascript:;">电视盒子</a></li>
+                <li><a href="javascript:;">照明</a></li>
+                <li><a href="javascript:;">清洁</a></li>
+                <li><a href="javascript:;">节能</a></li>
+                <li><a href="javascript:;">环境</a></li>
+                <li><a href="javascript:;">安防</a></li>
+                <li><a href="javascript:;">健康</a></li>
+                <li><a href="javascript:;">厨电</a></li>
+                <li><a href="javascript:;">影音</a></li>
+                <li><a href="javascript:;">卫浴</a></li>
             </ul>
             <div>查看更多></div>
         </div>
@@ -25,60 +25,114 @@
         <div class="second">
             <ul>
                 <li><a href=""><img src="../../../public/container/eighthFloor/11.jpg"></a></li>
-                <li>
+                <li v-for="item in homesList" :key="item.id">
                     <a href="">
-                        <div class="gridImg"><img src="../../../public/container/eighthFloor/12.png"></div>
+                        <div class="gridImg"><img :src="'http://127.0.0.1:3000/'+item.pimg"></div>
                     </a>
-                    <div class="gridInfo">荣耀路由Pro2</div>
-                    <p class="gridDescribe">四核全千兆</p>
-                    <p class="gridPrice">￥329</p>
+                    <div class="gridInfo">{{item.ptitle}}</div>
+                    <p class="gridDescribe">{{item.pdesc}}</p>
+                    <p class="gridPrice">￥{{item.pprice}}</p>
+                    <p class="gridTips" v-if="item.ptips.length>0">
+                            <em>
+                                <span>{{item.ptips}}</span>
+                            </em>
+                        </p>
                 </li>
+                <!-- <li><a href=""></a></li>
                 <li><a href=""></a></li>
                 <li><a href=""></a></li>
                 <li><a href=""></a></li>
                 <li><a href=""></a></li>
                 <li><a href=""></a></li>
-                <li><a href=""></a></li>
-                <li><a href=""></a></li>
+                <li><a href=""></a></li> -->
             </ul>
         </div>
         <!-- 三楼 -->
         <div class="third">
-            <ul>
-                <li>
-                    <a href="">
+            <ul :style="ulImgStyle">
+                <li v-for="item in myList" :key="item.id">
+                    <a href="javascript:;">
                         <div class="thirdImg">
                             <p class="thirdImgP">
-                            <img src="../../../public/container/eighthFloor/31.png">
+                            <img :src="'http://127.0.0.1:3000/'+item.pimg">
                             </p>
                             <p class="gridDescribe">
-                                智能语音蓝牙操控
+                                {{item.pdesc}}
                             </p>
                         </div>
                         <div class="gridTitle">
-                            荣耀盒子Pro
+                            {{item.ptitle}}
                         </div>
                         <p class="gridPrice">
-                            ￥419
+                            ￥{{item.pprice}}
                         </p>
                     </a>
                 </li>
+                <!-- <li><a href=""></a></li>
                 <li><a href=""></a></li>
                 <li><a href=""></a></li>
                 <li><a href=""></a></li>
-                <li><a href=""></a></li>
-                <li><a href=""></a></li>
+                <li><a href=""></a></li> -->
             </ul>
+            <div class="btnLeft" :class="btnLeftDisabled==true?'hidden':''" @click="movedRight">
+                <img src="../../../public/container/thirdFloor/left.png">
+            </div>
+            <div class="btnRight" :class="btnRightDisabled==true?'hidden':''" @click="movedLeft">
+                <img src="../../../public/container/thirdFloor/right.png">
+            </div>
         </div>
     </div>
 </template>
 <script>
 export default {
-    
+    props:['homesList'],
+    data(){
+        return {
+            ulImgStyle:{
+                width:0,
+                'margin-left':0
+            },
+            myList:{},
+            moved:0
+        }
+    },
+    computed:{
+        btnLeftDisabled(){
+            return this.moved == 0;
+        },
+        btnRightDisabled(){
+            return this.moved>=this.myList.length-6
+        }
+    },
+    methods:{
+        movedLeft(){
+            if(this.btnRightDisabled == false){
+                this.moved++;
+                this.ulImgStyle['margin-left']=this.moved*-200+"px";
+            }
+        },
+        movedRight(){
+            if(this.btnLeftDisabled == false){
+                this.moved--;
+                this.ulImgStyle['margin-left']=this.moved*-200+"px";
+            }
+        },
+        LoadList(){
+            var url = "http://127.0.0.1:3000/listThird";
+            this.axios.get(url).then((result)=>{
+            this.myList = result.data.result;
+            this.ulImgStyle.width = this.myList.length*200+"px";
+            })
+        }    
+    },
+    created(){
+        this.LoadList();
+    }
 }
 </script>
 <style>
 *{margin: 0;padding: 0;}
+em{font-style: normal;font-weight: 400;width: 100%;height: 100%;}
 #eighthFloor{                                                              /*整个七楼容器的大小和位置*/
     width: 1200px;
     margin: 5rem auto 0; 
@@ -124,6 +178,7 @@ export default {
     background-color: #F9F9F9;
     margin-left: 10px;
     border-radius: 10px;
+    position: relative;
 }
 #eighthFloor>.second>ul>li:nth-child(5),                                   /*第二个容器第二排li距离上面和下面的距离*/
 #eighthFloor>.second>ul>li:nth-child(6),
@@ -165,7 +220,14 @@ export default {
     color: #D00230;
     line-height: 50px;
 }
-
+#eighthFloor .hidden{
+    display: none;
+}
+#eighthFloor>.third{                                                       /*横向列表加载出来的多余商品隐藏*/                     
+    overflow: hidden;
+    height: 15rem;
+    position: relative;
+}
 #eighthFloor>.third>ul>li:first-child{                                     /*第三个容器里面,第一个li左边外边距为0*/
     margin-left: 0px;
 }
@@ -196,6 +258,56 @@ export default {
 #eighthFloor>.third>ul>li>a>.gridPrice{
     line-height: 10px;
     color: #D00230;
+}
+
+#eighthFloor .gridTips{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    /* border: 1px solid; */
+    height: 48px;
+    display: block;
+}  
+#eighthFloor .gridTips span{   
+    display: inline-block;                                      /*爆款框*/
+    padding: 0 9px;
+    margin: 0 auto;
+    height: 22px;
+    /* line-height: 22px; */
+    color: #fff;
+    border-radius: 0 0 6px 6px;
+    background-color: #ff8486;
+}
+
+#eighthFloor .third .btnLeft,
+#eighthFloor .third .btnRight{
+    width: 36px;height: 73px;
+    background-color: #F0F0F0;
+}
+#eighthFloor .third .btnLeft{
+    position: absolute;
+    top: 60px;
+    left: 0;
+    border-radius: 0 10px 10px 0;
+}
+#eighthFloor .third .btnRight{
+    position: absolute;
+    top: 60px;
+    left: 1154px;
+    border-radius: 10px 0 0 10px;
+}
+#eighthFloor .btnLeft img{
+    width: 35px;height: 35px;
+    position: absolute;
+    top: 17px;
+    left: 0px;
+}
+#eighthFloor .btnRight img{
+    width: 35px;height: 35px;
+    position: absolute;
+    top: 17px;
+    left: 0px;
 }
 </style>
 
