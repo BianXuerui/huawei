@@ -1,0 +1,255 @@
+<template>
+    <div id="detail">
+            <!-- 面包屑导航 -->
+        <div class="dHeader">
+            <ul>
+                <li>
+                    <a href="javascript:;">首页</a>
+                    <i class="el-icon-arrow-right"></i>
+                </li>
+                <li>
+                    <a href="javascript:;">手机</a>
+                    <i class="el-icon-arrow-right"></i>
+                </li>
+                <li>
+                    <a href="javascript:;">荣耀</a>
+                    <i class="el-icon-arrow-right"></i>
+                </li>
+                <li>
+                    <a href="javascript:;">荣耀V20 麒麟980 魅眼全视屏 4800万AI超清摄影 全网通6GB+128GB 标配版 幻夜黑</a>
+                </li>
+            </ul>
+        </div>
+        <!-- 主要信息 -->
+        <div class="main">
+            <div class="mainImg">
+                <div></div>
+                <div></div>
+            </div>
+            <div class="mainMsg">
+                <h2 class="title">荣耀V20 麒麟980 魅眼全视屏 4800万AI超清摄影 全网通6GB+128GB 标配版 幻夜黑</h2>
+                <p class="subtitle">
+                    <span>【超级618】到手价：2499元！限时优惠 300元，下单再减200元，限时抢购！</span>
+                    <span>麒麟980处理器|4800万像素摄像头|4000mAh大容量电池|超级快充</span>
+                </p>
+                <div class="price">
+                    <h2>
+                        <p>价&nbsp;&nbsp;&nbsp;&nbsp;格</p>抢购价 ￥2699.00 <del>￥2999</del>
+                    </h2> 
+                    <!-- 优惠 = discounts -->
+                    <div class="dsc">
+                        <ul>
+                            <li><span>促&nbsp;&nbsp;&nbsp;&nbsp;销</span><a href="javascript:;">限时特价</a><span>限时直降300元</span></li>
+                            <li><span></span><a href="javascript:;">下单立减</a><span>下单立减200元</span></li>
+                            <li><span></span><a href="javascript:;">整点赠送</a><span>10/12/14/16/20点下单前300赠AM115耳机（荣耀指定手机共享）</span></li>
+                            <li><span></span><a href="javascript:;">曾荣耀数码卷</a><span>赠168元数码产品优惠券包</span></li>
+                            <li><span></span><a href="javascript:;">商品赠券</a><span>赠快买酒价值960元大礼包兑换券 </span></li>
+                            <li><span></span><a href="javascript:;">赠送积分</a><span>购买即赠商城积分，积分可抵现~</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 服务说明 -->
+                <div class="note">
+                    <ul>
+                        <li>服务说明</li>
+                        <li><i class="el-icon-circle-check"></i>已满48元已免运费</li>
+                        <li><i class="el-icon-circle-check"></i>由华为商城负责发货，并提供售后服务</li>
+                    </ul>
+                </div>
+                <!-- 商品编码 -->
+                <div class="proNumber">
+                    <ul>
+                        <li>商品编码</li>
+                        <li>2601010087402</li>
+                    </ul>
+                </div>
+                <br>
+                <!-- 选择颜色 -->
+                <div class="color">
+                    <ul>
+                        <li>选择颜色</li>
+                        <li>魅海蓝</li>
+                        <li>幻夜黑</li>
+                        <li>魅丽红</li>
+                        <li>幻影红</li>
+                        <li>幻影蓝</li>
+                    </ul>
+                </div>
+                <!-- 选择版本 -->
+                <div class="versions">
+                    <ul>
+                        <li>选择版本</li>
+                        <li>全网通6GB+128GB</li>
+                        <li>全网通8GB+128Gb</li>
+                        <li>全网通8GB+256Gb</li>
+                    </ul>
+                </div>
+                <!-- 按钮 -->
+                <div>
+                    <ul>
+                        <li>
+                            <!-- 加减按钮 -->
+                            <el-input-number v-model="num" controls-position="right" @change="handleChange" :min="1" :max="10"></el-input-number>
+                        </li>
+                        <li>
+                            <el-button type="warning">加入购物车</el-button>
+                            <el-button type="danger">立即下单</el-button>
+                        </li>
+                        <li>
+
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    data(){
+        return {
+            num: 1
+        }
+    },
+    methods:{
+      handleChange(value) {
+        console.log(value);
+      }
+    }    
+}
+</script>
+<style>
+*{margin:0;padding: 0;}
+#detail{
+    /* 整个容器的大小 */
+    width: 100vw;
+    margin: 0 0 0 10rem;
+}
+#detail>.dHeader{
+    /* 面包屑导航的左外边距 */
+    /* margin: 0 0 0 10rem; */
+}
+#detail>.dHeader>ul>li{
+    /*面包屑导航li的左外边距*/
+    margin:0 0 0 10px;
+}
+#detail>.dHeader>ul>li a{
+    /* 面包屑导航a字体的样式 */
+    margin: 0 10px 0 0;
+    font-size: 12px;
+    color: #666;
+}
+#detail>.dHeader>ul>li:last-child a{
+    /* 面包屑导航最后一个a字体的独立样式 */
+    color:#333;
+}
+
+#detail>.main{
+    /* 主要信息里面左右两个div弹性布局 */
+    display: flex;
+}
+#detail>.main>.mainImg>div:first-child{
+    /*中图片的样式*/
+    box-sizing: border-box;
+    width: 450px;height: 450px;
+    border: 1px solid;
+}
+#detail>.main>.mainImg>div:last-child{
+    /* 小图片的样式 */
+    box-sizing: border-box;
+    width: 450px;height: 68px;
+    border: 1px solid;
+    margin: 1rem 0 0 0;
+}
+
+#detail>.main>.mainMsg>.title{
+    /* 标题的样式 */
+    width: 700px;
+    margin: 0 0 0 3rem;
+    font-weight: 500;
+    font-size: 21px;
+}
+#detail>.main>.mainMsg>.subtitle{
+    /* 副标题 */
+    width: 700px;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0 0 0 3rem;
+    padding: 0 40px 0 0;
+}
+#detail>.main>.mainMsg>.subtitle>span:first-child{
+    /* 副标题里面第一个span */
+    color: #CA141D;
+}
+#detail>.main>.mainMsg>.price{
+    /* 整个价格灰色容器的样式 */
+    box-sizing: border-box;
+    width: 700px;height: 235px;
+    /* border: 1px solid; */
+    margin: 0 0 0 3rem;
+    background-color: #F5F5F5;
+}
+#detail>.main>.mainMsg>.price::before{
+    /* 价格容器 */
+    content: "";
+    display: table;
+}
+#detail>.main>.mainMsg>.price>h2>p{
+    /* '价格'字体样式 */
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    color: #3A3A3A;
+    margin: 0 2rem 0 0;
+}
+#detail>.main>.mainMsg>.price>h2{
+    /* '价钱'字体样式 */
+    font-weight: 500;
+    font-size: 20px;
+    color: #CA141D;
+    margin: 0.8rem 0 0 10px;
+}
+#detail>.main>.mainMsg>.price>h2>del{
+    /* 打折样式 */
+    font-size: 18px;
+    color: #A4A4A4;
+}
+    /* 每个li的位置让它成列分布 */
+#detail>.main>.mainMsg>.price>.dsc>ul>li:nth-child(1){
+    margin: 0 15rem 0 10px;
+}
+#detail>.main>.mainMsg>.price>.dsc>ul>li:nth-child(2){
+    margin: 0 15rem 0 3rem;
+}
+#detail>.main>.mainMsg>.price>.dsc>ul>li:nth-child(3){
+    margin: 0 1rem 0 3rem;
+}
+#detail>.main>.mainMsg>.price>.dsc>ul>li:nth-child(4){
+    margin: 0 10rem 0 3rem;
+}
+#detail>.main>.mainMsg>.price>.dsc>ul>li:nth-child(5){
+    margin: 0 10rem 0 3rem;
+}
+#detail>.main>.mainMsg>.price>.dsc>ul>li:nth-child(6){
+    margin: 0 15rem 0 3rem;
+}
+#detail>.main>.mainMsg>.price>.dsc>ul>li>span:nth-child(1){
+    /* '促销'字体样式 */
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    color: #3A3A3A;
+    margin: 0 2rem 0 0;
+}
+#detail .dsc>ul>li>a{
+    /* '红色小框'样式 */
+    padding: 0 8px;
+    box-sizing: border-box;
+    width: 62px;height: 20px;
+    border: 1px solid #CA141D;
+    color: #CA141D;
+    line-height: 20px;
+    font-size: 12px;
+}
+</style>
