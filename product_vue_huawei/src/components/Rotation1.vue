@@ -19,11 +19,13 @@
     <li>
       <div class="msg-right">
         <div class="msg-img">
-          <img src="../../../public/rotation/name.png" />
+          <img v-if="!uid" src="../../../public/rotation/name.png" />
+          <img v-if="uid" src="../../../public/rotation/dl.jpg" />
         </div>
         <div class="msg-msg">
         <div>
-          <p>您好! 请登录 / 注册</p>
+          <p v-if="!uid">您好! 请 <span @click="toViews" data-view="/login">登录</span> / <span @click="toViews" data-view="/reg">注册</span></p>
+          <p v-if="uid">欢迎:{{uname}} <span @click="quit">注销</span></p>
         </div>
         <div class="msg-msg-msg">
           <div>
@@ -550,6 +552,8 @@ export default {
             {src: require('../../../public/rotation/5.jpg')},
         ],
         height:'550px',
+        uid:'',
+        uname:'',
         small_announce_list:[ /* 公告栏小轮播 */
                                 {aid:0,title:"会员购机享多重优惠"},
                                 {aid:1,title:"华为51活动公告"},
@@ -564,6 +568,9 @@ export default {
     mounted(){
             setInterval(this.announce_move,2000);//页面公告的显示
         },
+    created(){
+      this.getUid();
+    },
     methods:{
       announce_move(){
                 this.is_announce_move=true;
@@ -572,7 +579,25 @@ export default {
                     this.small_announce_list.shift();//删除第一个
                     this.is_announce_move=false;
                 },500)
-            }
+            },
+      toViews(e){
+        this.$router.push(e.target.dataset.view);
+      },
+      getUid(){
+        this.axios.get("http://127.0.0.1:3000/getUid")
+        .then(res=>{
+          // console.log(res.data.uid);
+          this.uid = res.data.uid;
+          this.uname = res.data.uname;
+          console.log(res.data.uname);
+        })
+      },
+    quit(){
+        this.axios.get("http://127.0.0.1:3000/quit")
+        .then(res=>{
+          history.go(0);
+      })
+    },
     },
 }
 </script>
@@ -661,6 +686,7 @@ export default {
   .msg img{
     width: 60px;
     margin-top: 10px;
+    border-radius:50%; 
   }
 
   .msg-right{
@@ -675,6 +701,7 @@ export default {
   }
   .msg-msg{
     margin-left: 10px;
+    color: #848484;
   }
   .msg-msg-msg div{
     display: block;
@@ -682,6 +709,15 @@ export default {
     height:25px;
     border-radius: 10px;
     margin-top: 5px;
+  }
+  .msg-msg>div>p>span:nth-child(1),.msg-msg>div>p>span:nth-child(2){
+  /* 中间部分登录/注册字体样式 */
+    color: #000;
+  }
+  .msg-msg>div>p>span:nth-child(1):hover,.msg-msg>div>p>span:nth-child(2):hover{
+   /* 中间部分登录/注册字体hover样式 */
+    color:#CB242B;
+    cursor: pointer;
   }
   .msg-msg-msg div:nth-child(1){
     line-height:25px;
