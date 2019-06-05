@@ -23,8 +23,10 @@
     </div>
     <div class="s-main">
         <ul>
-        <li><a href="javascript:;">请登录</a></li>
-        <li><a href="javascript:;">注册</a></li>
+        <li v-if="!uid"><a href="javascript:;" @click="toViews" data-view="/login">请登录</a></li>
+        <li v-if="uid"><a href="javascript:;" >欢迎用户:{{uname}}</a></li>
+        <li v-if="uid"><a href="javascript:;" @click="quit">注销</a></li>
+        <li v-if="!uid"><a href="javascript:;"  @click="toViews" data-view="/reg">注册</a></li>
         <li><a href="javascript:;">我的订单</a></li>
         <li><a href="javascript:;">客户服务</a></li>
         <li><a href="javascript:;">网站导航</a></li>
@@ -44,8 +46,35 @@
 <script>
 export default {
   data() {
-    return {}
-  }
+    return {
+      uid: '',
+      uname:'',
+    }
+  },
+  created(){
+    this.getUid();
+  },
+  methods:{
+    getUid(){
+      this.axios.get("http://127.0.0.1:3000/getUid")
+      .then(res=>{
+        // console.log(res.data.uid);
+        this.uid = res.data.uid;
+        this.uname = res.data.uname;
+        console.log(res.data.uname);
+      })
+    },
+    quit(){
+      this.axios.get("http://127.0.0.1:3000/quit")
+      .then(res=>{
+        history.go(0);
+      })
+    },
+    toViews(e){
+      this.$router.push(e.target.dataset.view);
+    }
+  },
+  
 };
 </script>
 <style scoped>
