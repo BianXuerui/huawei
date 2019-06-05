@@ -18,20 +18,28 @@ import tenthFloor from './components/container/tenthFloor'
 import eleventhFloor from './components/container/eleventhFloor'
 import footer from './components/container/footer'
 // 用户登录页面
-import user from './views/User'
+import login from './views/login'
+import reg from './views/register'
 import userHeader from './components/user/userHeader'
 import userContainer from './components/user/container'
 import userFooter from './components/user/userFooter'
+// 商品详情
+import details from './components/Header'
+import detailIndex from './components/details/detailIndex'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    // 商品详情
+    {path:'/details',component:details},
+    {path:'/detailIndex',component:detailIndex},
     // 用户页
     {path:'/userFooter',component:userFooter},
     {path:'/userContainer',component:userContainer},
     {path:'/userHeader',component:userHeader},
-    {path:'/user',component:user},
+    {path:'/reg',component:reg},
+    {path:'/login',component:login},
     // index页
     {path:'/footer',component:footer},
     {path:'/eleventhFloor',component:eleventhFloor},
